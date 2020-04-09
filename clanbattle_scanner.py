@@ -10,6 +10,22 @@ MAP_PATTERN = 'Dreizack|Zerklüftet|Gefahrenherd|Großes Rennen|Nördliche Gewä
 PLAYER_PATTERN = '<div class="BattleTeamsList__nickname__1nkU_">(.+?)</div>'
 SHIP_PATTERN = '<div class="BattleTeamsList__shipName__1QlOg">(.+?)</div>'
 
+def csv_header(num_players = None):
+	num_players = num_players or PLAYERS_PER_TEAM
+	fields = ['DATE', 'TIME', 'RESULT', 'MAP']
+	for i in range(num_players):
+		fields.append(f'PLAYER {i+1}')
+		fields.append(f'SHIP {i+1}')
+	return ';'.join(fields)
+
+def csv_row(battle, num_players = None):
+	num_players = num_players or PLAYERS_PER_TEAM
+	fields = [battle.date, battle.time, battle.result, battle.map]
+	for i in range(num_players):
+		fields.append(battle.players[i])
+		fields.append(battle.ships[i])
+	return ';'.join(fields)
+
 @dataclass
 class Battle:
 	date: str
@@ -32,8 +48,7 @@ def search_regex(regex, html_data, group_index = 0):
 	return None, html_data
 	
 def scan_next_battle(html_data, num_players = None):
-	if not num_players:
-		num_players = PLAYERS_PER_TEAM
+	num_players = num_players or PLAYERS_PER_TEAM
 	
 	while True:
 		date_time, html_data = search_regex(DATE_PATTERN, html_data)
@@ -57,6 +72,8 @@ if __name__ == "__main__":
 	
 	data = load_data(input_file)
 	with open(output_file, 'w+', encoding='utf-8') as out:
+		out.write(csv_header())
+		out.write('\n')
 		for each_battle in scan_next_battle(data):
-			out.write(str(each_battle))
+			out.write(csv_row(each_battle))
 			out.write('\n')
