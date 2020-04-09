@@ -3,10 +3,10 @@ from dataclasses import dataclass, field
 
 
 #constants
-PLAYERS_PER_TEAM = 4
+PLAYERS_PER_TEAM = 7
 DATE_PATTERN = '(\d{2})[/.-](\d{2})[/.-](\d{2}) (\d{2}):(\d{2})'	# %d.%m.%y %H:%M
 RESULT_PATTERN = 'Niederlage|Sieg'
-MAP_PATTERN = 'Dreizack|Zerklüftet|Gefahrenherd|Großes Rennen|Nördliche Gewässer'
+MAP_PATTERN = 'Land des Feuers|Norden|Nördliche Gewässer|Zuflucht|Tränen der Wüste|Kampfzone Alpha|Weg des Kriegers'
 PLAYER_PATTERN = '<div class="BattleTeamsList__nickname__1nkU_">(.+?)</div>'
 SHIP_PATTERN = '<div class="BattleTeamsList__shipName__1QlOg">(.+?)</div>'
 
