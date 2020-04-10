@@ -6,9 +6,25 @@ from dataclasses import dataclass, field
 PLAYERS_PER_TEAM = 7
 DATE_PATTERN = '(\d{2})[/.-](\d{2})[/.-](\d{2}) (\d{2}):(\d{2})'	# %d.%m.%y %H:%M
 RESULT_PATTERN = 'Niederlage|Sieg'
-MAP_PATTERN = 'Land des Feuers|Norden|Nördliche Gewässer|Zuflucht|Tränen der Wüste|Kampfzone Alpha|Weg des Kriegers'
+MAP_PATTERN = 'Land des Feuers|Norden|Nördliche Gewässer|Zuflucht|Tränen der Wüste|Kampfzone Alpha|Weg des Kriegers|Dreizack'
 PLAYER_PATTERN = '<div class="BattleTeamsList__nickname__1nkU_">(.+?)</div>'
 SHIP_PATTERN = '<div class="BattleTeamsList__shipName__1QlOg">(.+?)</div>'
+
+RESULT_TRANSLATION = {
+	'Niederlage': 'Defeat',
+	'Sieg': 'Win'
+}
+
+MAP_TRANSLATION = {
+	'Land des Feuers' : 'Land of Fire',
+	'Norden': 'North',
+	'Nördliche Gewässer': 'Northern Waters',
+	'Zuflucht': 'Haven',
+	'Tränen der Wüste': 'Tears of the Desert',
+	'Kampfzone Alpha': 'Crash Zone Alpha',
+	'Weg des Kriegers': 'Warrior\'s Path',
+	'Dreizack': 'Trident'
+}
 
 def csv_header(num_players = None):
 	num_players = num_players or PLAYERS_PER_TEAM
@@ -20,7 +36,7 @@ def csv_header(num_players = None):
 
 def csv_row(battle, num_players = None):
 	num_players = num_players or PLAYERS_PER_TEAM
-	fields = [battle.date, battle.time, battle.result, battle.map]
+	fields = [battle.date, battle.time, RESULT_TRANSLATION.get(battle.result, battle.result), MAP_TRANSLATION.get(battle.map, battle.map)]
 	for i in range(num_players):
 		fields.append(battle.players[i])
 		fields.append(battle.ships[i])

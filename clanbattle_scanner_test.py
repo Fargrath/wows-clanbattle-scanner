@@ -10,7 +10,7 @@ class TestClanBattleScanner(unittest.TestCase):
 		test_battle = Battle('04.04.20', '22:04', 'Sieg', 'Dreizack')
 		test_battle.players.append('Player1')
 		test_battle.ships.append('Ship1')
-		expected_row = '04.04.20;22:04;Sieg;Dreizack;Player1;Ship1'
+		expected_row = '04.04.20;22:04;Win;Trident;Player1;Ship1'
 		self.assertEqual(csv_row(test_battle, num_players = 1), expected_row)
 		
 	def test_scan_next_battle(self):
