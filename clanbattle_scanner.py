@@ -5,14 +5,14 @@ from dataclasses import dataclass, field
 #constants
 PLAYERS_PER_TEAM = 7
 DATE_PATTERN = '(\d{2})[/.-](\d{2})[/.-](\d{2}) (\d{2}):(\d{2})'	# %d.%m.%y %H:%M
-RESULT_PATTERN = 'Niederlage|Sieg'
+RESULT_PATTERN = 'ClanBattlesTable__defeat__3Jl6w|ClanBattlesTable__victory__1DrFU'
 MAP_PATTERN = 'Land des Feuers|Norden|Nördliche Gewässer|Zuflucht|Tränen der Wüste|Kampfzone Alpha|Weg des Kriegers|Dreizack'
 PLAYER_PATTERN = '<div class="BattleTeamsList__nickname__1nkU_">(.+?)</div>'
 SHIP_PATTERN = '<div class="BattleTeamsList__shipName__1QlOg">(.+?)</div>'
 
 RESULT_TRANSLATION = {
-	'Niederlage': 'Defeat',
-	'Sieg': 'Win'
+	'ClanBattlesTable__defeat__3Jl6w': 'Defeat',
+	'ClanBattlesTable__victory__1DrFU': 'Victory',
 }
 
 MAP_TRANSLATION = {
