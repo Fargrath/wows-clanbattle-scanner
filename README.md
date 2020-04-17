@@ -2,7 +2,8 @@
 A simply python script to parse results of the World of Warships clan battle sessions into a lean csv format for further analysis.
 
 ## prerequisites
-Python 3 is required to run this script: https://www.python.org/downloads/
+1. Python 3 is required to run this script: https://www.python.org/downloads/
+1. [Download](https://github.com/Fargrath/wows-clanbattle-scanner/raw/master/clanbattle_scanner.py) the file `clanbattle_scanner.py` (or checkout the repository)
 
 ## usage
 Unfortunately, WoWS doesn't offer a programming api for clanbattle data. Therefore, you have to save the html page to your local files.
